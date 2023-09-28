@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-t$ihhj$#29%jm$u9rdgdg$&-@mx6d8ke1%%e58t7n*uxpew+)9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["hng-screenrecording-api.onrender.com"]
 
 
 # Application definition
