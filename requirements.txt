@@ -4,9 +4,7 @@ charset-normalizer
 colorama
 Django
 djangorestframework
-ffmpeg-python
 filelock
-future
 idna
 Jinja2
 llvmlite
@@ -21,11 +19,9 @@ python-decouple
 pytz==2023.3.post1
 regex
 requests
-semantic-version
-setuptools-rust==1.7.0
-sqlparse==0.4.4
-sympy==1.12
-tiktoken==0.3.3
+sqlparse
+sympy
+tiktoken
 torch==2.0.1
 tqdm==4.66.1
 typing_extensions==4.8.0
