@@ -33,7 +33,7 @@ numba
 <<<<<<< HEAD
 numpy==1.25.0
 =======
-numpy=1.25
+numpy==1.25.0
 >>>>>>> 25fbacb (add required dependencies)
 openai-whisper
 pyasn1
