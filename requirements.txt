@@ -16,7 +16,7 @@ more-itertools
 mpmath
 networkx
 numba
-numpy
+numpy=1.25
 openai-whisper
 python-decouple
 pytz
