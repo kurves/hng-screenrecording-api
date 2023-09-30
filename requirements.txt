@@ -31,6 +31,7 @@ mpmath
 networkx
 numba
 
+
 numpy==1.25.0
 
 
