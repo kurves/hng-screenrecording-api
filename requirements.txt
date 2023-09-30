@@ -16,7 +16,7 @@ mpmath
 networkx
 numba
 numpy
-openai-whisper
+openai-whisper==20230918
 python-decouple
 pytz
 regex
@@ -25,7 +25,7 @@ semantic-version
 setuptools-rust
 sqlparse
 sympy
-tiktoken
+tiktoken==0.3.3
 torch
 tqdm
 typing_extensions
