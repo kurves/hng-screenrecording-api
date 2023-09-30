@@ -25,7 +25,6 @@ semantic-version
 setuptools-rust
 sqlparse
 sympy
-tiktoken
 torch
 tqdm
 typing_extensions
