@@ -14,11 +14,13 @@ class ScreenVideo(models.Model):
 
 
     def trancribe_audio(self,audio_path):
-        response = openai.Transcription.create(
-            audio=openai.Audio.from_file(audio_path, content_type="audio/wav"),
-            model="whisper-large",)
+        model = whisper.load_model("base")
+        result = model.transcribe(audio_path,content_type="audio/wav" , verbose=True)
+       # response = openai.Transcription.create(
+         #   audio=openai.Audio.from_file(audio_path, content_type="audio/wav"),
+        #    model="whisper-large",)
         
-        transcription_result = response['text']
+        transcription_result = result['text']
         return transcription_result
 
 
