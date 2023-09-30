@@ -30,9 +30,7 @@ more-itertools
 mpmath
 networkx
 numba
-
 numpy==1.25.0
-
 openai-whisper
 pyasn1
 pyasn1-modules
