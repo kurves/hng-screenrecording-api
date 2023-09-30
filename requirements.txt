@@ -30,7 +30,11 @@ more-itertools
 mpmath
 networkx
 numba
+<<<<<<< HEAD
 numpy==1.25.0
+=======
+numpy=1.25
+>>>>>>> 25fbacb (add required dependencies)
 openai-whisper
 pyasn1
 pyasn1-modules
