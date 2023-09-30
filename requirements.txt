@@ -18,6 +18,7 @@ networkx
 numba
 numpy
 openai-whisper
+python
 python-decouple
 pytz
 regex
