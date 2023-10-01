@@ -51,8 +51,6 @@ sympy
 tiktoken
 torch
 tqdm
-Twisted
-twisted-iocpsupport
 txaio
 typing_extensions
 tzdata
