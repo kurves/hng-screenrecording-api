@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+import boto3
+from storages.backends.s3boto3 import S3Boto3Storage
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,6 +37,7 @@ ALLOWED_HOSTS = ["127.0.0.1","hng-screenrecording-api.onrender.com"]
 # Application definition
 
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #my apps
     'screenapp',
-    'rest_framework'
+    'rest_framework',
+    'storages',
+   
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +94,86 @@ DATABASES = {
 }
 
 
+
+
+
+AWS_ACCESS_KEY_ID = config("aws_access_id")
+AWS_SECRET_ACCESS_KEY = config("aws_secret_key")
+AWS_STORAGE_BUCKET_NAME = config("aws_bucket")
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME=config("aws_region")
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+#STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_FILE_OVERWRITE = False,
+AWS_DEFAULT_ACL = None,
+AWS_S3_VERIFY = True,
+
+#PUBLIC_MEDIA_LOCATION = 'media'
+#MEDIA_URL ='https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+
+
+ 
+
+
+
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+
+
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+#MEDIA_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+#STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
+#MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
+
+
+#VIDEO_STORAGE_LOCATION = 'recorded-videos/'  # Customize the storage path
+#VIDEO_URL_PREFIX = MEDIA_URL + VIDEO_STORAGE_LOCATION
+#VIDEO_DEFAULT_ACL = 'public-read'
+
+
+
+# Custom storage backend for media files
+#class MediaStorage(S3Boto3Storage):
+    #location = 'media'
+   # file_overwrite = False  # Set this to True if you want to overwrite files with the same name
+   # custom_domain = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# Rest Framework settings for file uploads (optional)
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.MultiPartParser',
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -122,6 +209,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #media files
 MEDIA_URL='/media/'

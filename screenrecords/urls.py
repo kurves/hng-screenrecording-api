@@ -18,18 +18,27 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include
 from rest_framework import routers
-from screenapp.views import ScreenVideoViewSet
+#from screenapp.views import ScreenVideoViewSet
 from django.conf.urls.static import static
 
 
 
-router =routers.DefaultRouter()
-router.register(r'screen-videos', ScreenVideoViewSet)
+#router =routers.DefaultRouter()
+#router.register(r'screen-videos', ScreenVideoViewSet,basename='video')
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('api/',include('rest_framework.urls')),
+    path('', include('screenapp.urls')),
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+    #path('upload/', ScreenUploadVideoView().as_view(),name='upload-video'),
+    #path('api/video/<int:pk>/', ScreenVideoDetailView.as_view(), name='video-detail'),
+
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
